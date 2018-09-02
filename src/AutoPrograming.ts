@@ -13,6 +13,7 @@ export class AutoProgramming {
     let lineContent = editor.document.lineAt(selection.anchor.line);
     let line = selection.anchor.line;
     if (!lineContent.text) {
+      if (selection.anchor.line === 0) { return; }
       lineContent = editor.document.lineAt(selection.anchor.line - 1);
       collector.vertical(lineContent.text).then(items => {
         this.selectItems(items, lineContent, line, collector);
@@ -27,7 +28,6 @@ export class AutoProgramming {
   }
 
   selectItems(items: { text: string; count: number; }[], lineContent: vscode.TextLine, line: number, collector: Collector): void {
-    console.log(items);
     if (!items.length) {
       vscode.window.showErrorMessage('No candidates found');
       return;
@@ -43,6 +43,7 @@ export class AutoProgramming {
       editor.edit(editBuilder => {
         const indentLevel = ((lineContent.text.match(/^\s*/) || '')[0]).length;
         const range = new vscode.Range(new vscode.Position(line, indentLevel), new vscode.Position(line, lineContent.text.length));
+        // TODO: newline with indent
         editBuilder.replace(range, item + "\n");
       });
       const next = new vscode.Position(line + 1, 0);

@@ -1,11 +1,9 @@
 'use strict';
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { Collector } from './Collector';
 
 export function activate(context: vscode.ExtensionContext) {
-    const disposable = vscode.commands.registerCommand('extension.sayHello', () => {
+    const disposable = vscode.commands.registerCommand('autoProgramming.complement', () => {
         const rootPath = vscode.workspace.rootPath;
         if (!rootPath) { return; }
         const collector = new Collector(rootPath);

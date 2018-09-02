@@ -29,12 +29,11 @@ export class AutoProgramming {
   selectItems(items: { text: string; count: number; }[], lineContent: vscode.TextLine, line: number, collector: Collector): void {
     console.log(items);
     if (!items.length) {
-      vscode.window.showErrorMessage('No candidate found');
+      vscode.window.showErrorMessage('No candidates found');
       return;
     }
     vscode.window.showQuickPick(items.map(i => i.text)).then(item => {
       if (!item) {
-        vscode.window.showErrorMessage('No candidate found');
         return;
       }
       const editor = vscode.window.activeTextEditor;

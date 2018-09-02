@@ -2,7 +2,7 @@
     "name": "auto-programming",
     "displayName": "auto-programming",
     "description": "Provide statistical complements for git project.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "hitode909",
     "engines": {
         "vscode": "^1.25.0"

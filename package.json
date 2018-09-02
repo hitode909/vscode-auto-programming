@@ -7,7 +7,12 @@
     "engines": {
         "vscode": "^1.25.0"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hitode909/vscode-auto-programming"
+    },
     "icon": "icon.png",
+    "homepage": "https://github.com/hitode909/vscode-auto-programming",
     "categories": [
         "Snippets"
     ],

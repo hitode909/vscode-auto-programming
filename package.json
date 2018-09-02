@@ -1,14 +1,15 @@
 {
     "name": "auto-programming",
     "displayName": "auto-programming",
-    "description": "auto programming",
+    "description": "Provide statistical complements for git project.",
     "version": "0.0.1",
     "publisher": "hitode909",
     "engines": {
         "vscode": "^1.25.0"
     },
+    "icon": "icon.png",
     "categories": [
-        "Other"
+        "Snippets"
     ],
     "activationEvents": [
         "onCommand:autoProgramming.complement"

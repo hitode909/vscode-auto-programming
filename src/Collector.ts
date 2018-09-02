@@ -103,8 +103,9 @@ constructor(projectRoot: string) {
           if (this.trim(lines.shift() || '') !== '--') {
             continue;
           }
-
-          const header = this.trim(lines.shift() || '');
+          const line = lines.shift();
+          if (!line) { continue; }
+          const header = this.trim(line);
           if (!header) {
             continue;
            }
@@ -113,7 +114,8 @@ constructor(projectRoot: string) {
              continue;
            }
 
-           const candidate = this.trim(lines.shift() || '');
+          const candidate = this.trim(lines.shift() || '');
+          if (!candidate) { continue; }
 
            if (!counts[candidate]) {
              counts[candidate] = 0;

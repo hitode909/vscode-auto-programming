@@ -24,7 +24,6 @@ export class AutoProgramming {
     collector.horizontal(lineContent.text, 0).then(items => {
       this.selectItems(items, lineContent, line, collector);
     });
-
   }
 
   selectItems(items: { text: string; count: number; }[], lineContent: vscode.TextLine, line: number, collector: Collector): void {
@@ -40,16 +39,17 @@ export class AutoProgramming {
       if (!editor) {
         return;
       }
+
+      const indentLevel = ((lineContent.text.match(/^\s*/) || '')[0]).length;
+      const range = new vscode.Range(new vscode.Position(line, indentLevel), new vscode.Position(line, lineContent.text.length));
       editor.edit(editBuilder => {
-        const indentLevel = ((lineContent.text.match(/^\s*/) || '')[0]).length;
-        const range = new vscode.Range(new vscode.Position(line, indentLevel), new vscode.Position(line, lineContent.text.length));
-        // TODO: newline with indent
-        editBuilder.replace(range, item + "\n");
+        editBuilder.replace(range, item);
       });
-      const next = new vscode.Position(line + 1, 0);
+
+      const next = new vscode.Position(line, indentLevel + item.length);
       const newSelection = new vscode.Selection(next, next);
       editor.selection = newSelection;
-
+      vscode.commands.executeCommand('editor.action.insertLineAfter');
       collector.vertical(item).then(items => {
         this.selectItems(items, lineContent, line + 1, collector);
       });
